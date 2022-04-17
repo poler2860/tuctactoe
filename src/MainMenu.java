@@ -1,20 +1,19 @@
 import javax.swing.*;
 
 public class MainMenu{
-public void mainMenu() {
         JFrame frame;
+public void mainMenu() {
         frame = new JFrame("TucTacToe");
-        frame.setLayout(null);
-        frame.setVisible(false);
-        frame.setSize(800,600);
 
         JButton button;
 
-
         button = new JButton("Click");
-        button.setBounds(100, 200 , 60,20);
-
+        button.setBounds(frame.getSize().width/10 , frame.getSize().height/10 , 60,20);
+        
+        frame.setLayout(null);
+        frame.setVisible(true);
+        frame.setSize(800,600);
+        
         frame.add(button);
-
     }
 }
