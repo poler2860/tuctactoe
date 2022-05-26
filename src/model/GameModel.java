@@ -94,5 +94,9 @@ public class GameModel {
 		sb.append("Lost:").append("\t").append("25%").append("\n");
 		return sb.toString();			
 	}
+
+	public void getResault(){
 		
+	}
+
 }

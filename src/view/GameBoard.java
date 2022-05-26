@@ -14,10 +14,10 @@ public class GameBoard extends GamePanel {
 	private BoardCell[][] cells;
 	
 	public GameBoard(GameController gc) {
-		super(gc);	
+		super(gc);
 		this.setLayout(null);
 		setSize(new Dimension(MainWindow.WIDTH-2*MainWindow.PLAYER_WIDTH, MainWindow.HEIGHT-MainWindow.TOP_HEIGHT));		
-		this.setBackground(Color.WHITE);
+		this.setBackground(Color.YELLOW);
 		this.cells= new BoardCell[3][3];				
 		for (int row=0; row< 3; row++) {
 			for (int col=0; col< 3; col++) {

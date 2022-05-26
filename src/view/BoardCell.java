@@ -15,13 +15,13 @@ import model.GameModel;
 
 @SuppressWarnings("serial")
 public class BoardCell extends GamePanel implements MouseListener {
-	public static final int CELL_PADDING = 10;
+	public static final int CELL_PADDING = 5;
 	int row, col;	
 	public boolean highlighted;
 
 	public BoardCell(GameController gc, int row, int col) {
 		super(gc);
-		this.setBackground(Color.WHITE);
+		this.setBackground(Color.black);
 		this.row = row;
 		this.col = col;
 		this.addMouseListener(this);
