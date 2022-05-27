@@ -176,7 +176,13 @@ public class GameModel {
 		for (int i = 0; i < 3; i++) {
 			int j = 2 - i;
 
+			if(gameBoard[i][j] == "X"){
+				tmp_res2++;
+			}
 
+			if(gameBoard[i][j] == "O"){
+				tmp_res2++;
+			}
 		}
 
 		if (tmp_res == 3) {
