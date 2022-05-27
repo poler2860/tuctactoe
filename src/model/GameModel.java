@@ -2,6 +2,7 @@ package model;
 
 import control.GameController;
 
+
 public class GameModel {
 	PlayersCatalogue  playerCatalogue;
 	String [] gamePlayers;		
@@ -101,7 +102,7 @@ public class GameModel {
 
 	public String horizontalCheck(){
 
-		String result = 0;
+		String result = null;
 		int tmp_res = 0;
 
 		for (int i = 0; i < 3; i++) {
@@ -110,19 +111,19 @@ public class GameModel {
 			}
 			tmp_res = 0;
 			for (int j = 0; j < 3; j++) {
-				if(gameBoard[i][j] == 'X'){
+				if(gameBoard[i][j] == "X"){
 					tmp_res++;
 				}
-				if(gameBoard[i][j] == 'O'){
+				if(gameBoard[i][j] == "O"){
 					tmp_res--;
 				}
 			}
 		}
 		if(tmp_res == 3) {
-			result = 'X';
+			result = "X";
 		}
 		if(tmp_res == -3) {
-			result = 'O';
+			result = "O";
 		}
 
 		return result;
@@ -130,7 +131,7 @@ public class GameModel {
 }
 	public String verticalCheck(){
 
-		String result = 0;
+		String result = null;
 		int tmp_res = 0;
 
 		for (int i = 0; i < 3; i++) {
@@ -139,35 +140,35 @@ public class GameModel {
 			}
 			tmp_res = 0;
 			for (int j = 0; j < 3; j++) {
-				if(gameBoard[j][i] == 'X'){
+				if(gameBoard[j][i] == "X"){
 					tmp_res++;
 				}
-				if(gameBoard[j][i] == 'O'){
+				if(gameBoard[j][i] == "O"){
 					tmp_res--;
 				}
 			}
 		}
 		if(tmp_res == 3) {
-			result = 'X';
+			result = "X";
 		}
 		if(tmp_res == -3) {
-			result = 'O';
+			result = "O";
 		}
 
 		return result;
 
 	}
-	public String DiagonalCheck(){
+	public String DiagonalCheck() {
 
-		String result = 0;
+		String result = null;
 		int tmp_res = 0;
-		int tmp_res = 0;
+		int tmp_res2 = 0;
 
 		for (int i = 0; i < 3; i++) {
-			if(gameBoard[i][i] == 'X'){
+			if (gameBoard[i][i] == "X") {
 				tmp_res++;
 			}
-			if(gameBoard[i][i] == 'O'){
+			if (gameBoard[i][i] == "O") {
 				tmp_res--;
 			}
 		}
@@ -176,16 +177,15 @@ public class GameModel {
 			int j = 2 - i;
 
 
-
 		}
 
-		if(tmp_res == 3) {
-			result = 'X';
+		if (tmp_res == 3) {
+			result = "X";
 		}
-		if(tmp_res == -3) {
-			result = 'O';
+		if (tmp_res == -3) {
+			result = "O";
 		}
 
 		return result;
-
 	}
+}
