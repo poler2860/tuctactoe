@@ -55,7 +55,7 @@ public class GameModel {
 	}
 		
 	public void startGame() {
-		gameBoard= new String[3][3];
+		gameBoard= new String[3][3]; //rows | columns
 	}
 	
 	public boolean inPlay() {
@@ -95,8 +95,97 @@ public class GameModel {
 		return sb.toString();			
 	}
 
-	public void getResault(){
-		
+	public void getResult(){
+
 	}
 
+	public String horizontalCheck(){
+
+		String result = 0;
+		int tmp_res = 0;
+
+		for (int i = 0; i < 3; i++) {
+			if(tmp_res == 3 || tmp_res == -3){
+				break;
+			}
+			tmp_res = 0;
+			for (int j = 0; j < 3; j++) {
+				if(gameBoard[i][j] == 'X'){
+					tmp_res++;
+				}
+				if(gameBoard[i][j] == 'O'){
+					tmp_res--;
+				}
+			}
+		}
+		if(tmp_res == 3) {
+			result = 'X';
+		}
+		if(tmp_res == -3) {
+			result = 'O';
+		}
+
+		return result;
+
 }
+	public String verticalCheck(){
+
+		String result = 0;
+		int tmp_res = 0;
+
+		for (int i = 0; i < 3; i++) {
+			if(tmp_res == 3 || tmp_res == -3){
+				break;
+			}
+			tmp_res = 0;
+			for (int j = 0; j < 3; j++) {
+				if(gameBoard[j][i] == 'X'){
+					tmp_res++;
+				}
+				if(gameBoard[j][i] == 'O'){
+					tmp_res--;
+				}
+			}
+		}
+		if(tmp_res == 3) {
+			result = 'X';
+		}
+		if(tmp_res == -3) {
+			result = 'O';
+		}
+
+		return result;
+
+	}
+	public String DiagonalCheck(){
+
+		String result = 0;
+		int tmp_res = 0;
+		int tmp_res = 0;
+
+		for (int i = 0; i < 3; i++) {
+			if(gameBoard[i][i] == 'X'){
+				tmp_res++;
+			}
+			if(gameBoard[i][i] == 'O'){
+				tmp_res--;
+			}
+		}
+
+		for (int i = 0; i < 3; i++) {
+			int j = 2 - i;
+
+
+
+		}
+
+		if(tmp_res == 3) {
+			result = 'X';
+		}
+		if(tmp_res == -3) {
+			result = 'O';
+		}
+
+		return result;
+
+	}
