@@ -96,8 +96,15 @@ public class GameModel {
 		return sb.toString();			
 	}
 
-	public void getResult(){
+	public String getResult(){
+		if(horizontalCheck() == "X" || verticalCheck() == "X" || DiagonalCheck() == "X"){
+			return gamePlayers[0];
+		}
+		if(horizontalCheck() == "O" || verticalCheck() == "O" || DiagonalCheck() == "O"){
+			return gamePlayers[1];
+		}
 
+		return null;
 	}
 
 	public String horizontalCheck(){
@@ -185,10 +192,10 @@ public class GameModel {
 			}
 		}
 
-		if (tmp_res == 3) {
+		if (tmp_res == 3 || tmp_res2 == 3) {
 			result = "X";
 		}
-		if (tmp_res == -3) {
+		if (tmp_res == -3 || tmp_res2 == -3) {
 			result = "O";
 		}
 
