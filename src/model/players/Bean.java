@@ -2,23 +2,30 @@ package model.players;
 
 import model.GameModel;
 
-public class Bean {
-    GameModel Bm;
-    String mark;
-    int tmpmoves= Bm.totalmoves;
-    void Beanplacemt() {
-    if(Bm.getGamePlayerspos("Bean")==0)
-          mark="X";
-    else
-        mark= "O";
-        outerloop:
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                Bm.makeMove(i, j);
-                if (Bm.getBoardMark(i, j) == mark &&  tmpmoves<Bm.totalmoves) {
-                    break outerloop;
-                }
+import java.util.Random;
+
+public class Bean extends player {
+    GameModel gm;
+    int tmpmoves;
+    Random rand = new Random();
+    public void BeanPlacement() {
+        int row = 0;
+        int col = 0;
+        while(gm.inPlay() && tmpmoves<=gm.totalmoves) {
+
+            row = getRandomNumber(0,2);
+            col = getRandomNumber(0,2);
+            if (gm.getBoardMark(row,col)==null) {
+                gm.makeMove(row, col);
+                tmpmoves++;
             }
+            continue;
         }
+
+    }
+
+    public int getRandomNumber(int min, int max) {
+        return (int) (Math.random() * (max-min) + min);
+
     }
 }
