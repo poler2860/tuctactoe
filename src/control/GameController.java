@@ -4,7 +4,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import model.GameModel;
-import model.PlayersCatalogue;
+import model.players.Player;
 import view.MainAreaPanel;
 import view.MainWindow;
 
@@ -48,7 +48,14 @@ public class GameController extends WindowAdapter {
 		this.view.getLeftPanel().getSelectPlayerBtn().setEnabled(model.NoPlay());
 		this.view.getRightPanel().getSelectPlayerBtn().setEnabled(model.NoPlay());
 	}
-	
+
+
+	public void endGame(Player winner, Player loser, int gameType) {
+		if(gameType == 1) {
+			model.handleGameEnding(winner, loser, gameType);
+		}else if(gameType == 0) {
+			model.handleGameEnding(winner, loser, gameType);
+		}
 	public GameModel getModel() {
 		return model;
 	}
