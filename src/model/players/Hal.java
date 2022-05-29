@@ -68,16 +68,23 @@ public class Hal extends Player {
             }
 
 
-    public Hal(int games, int wins, int defeats, int ties, double score, boolean placedMark, GameController gc, GameModel gm, GameController gc1, GameModel gm1) {
-        super(games, wins, defeats, ties, score, placedMark, gc, gm);
+    public Hal(String nickname, GameController gc, GameController gc1, GameModel gm, Player hal) {
+        super(nickname, gc);
+        this.gc = gc1;
+        this.gm = gm;
+        this.hal = hal;
+    }
+
+    public Hal(String nickname, int games, int wins, int defeats, int ties, GameController gc, GameModel gm, GameController gc1, GameModel gm1, Player hal) {
+        super(nickname, games, wins, defeats, ties, gc, gm);
         this.gc = gc1;
         this.gm = gm1;
+        this.hal = hal;
     }
 
-    public Hal(String nickname, GameController gc, GameModel gm) {
-        super(nickname);
+    public Hal(GameController gc, GameModel gm, Player hal) {
         this.gc = gc;
         this.gm = gm;
+        this.hal = hal;
     }
-
 }
