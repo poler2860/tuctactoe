@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDateTime;
 
 import control.GameController;
-import model.players.Player;
+import model.players.*;
 
 
 public class GameModel {

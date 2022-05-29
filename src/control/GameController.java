@@ -35,7 +35,7 @@ public class GameController extends WindowAdapter {
 	}
 	
 	
-	public void selectPlayer(String p, int pos) {
+	public void selectPlayer(Player p, int pos) {
 		this.model.selectPlayer(p, pos);	
 		System.out.println("Player " + pos + " set to " + p);
 		this.view.getTopPanel().getStartBtn().setEnabled(model.ready());
@@ -56,6 +56,7 @@ public class GameController extends WindowAdapter {
 		}else if(gameType == 0) {
 			model.handleGameEnding(winner, loser, gameType);
 		}
+	}
 	public GameModel getModel() {
 		return model;
 	}
