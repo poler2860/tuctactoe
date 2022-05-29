@@ -2,18 +2,40 @@ package model;
 
 import model.players.Player;
 import arraylist.Array_List;
+import control.GameController;
+
 import java.io.*;
 
 public class PlayersCatalogue {
 
 
 	int NumOfPlayers;
+    Array_List players;
 
-    public PlayersCatalogue(){
+
+    public PlayersCatalogue(GameModel gm, GameController gc){
+
+        players = new Array_List(50);
+
+        Player p1 = new Player("Namios", 20, 10, 5, 5, gc, gm);
+        Player p2 = new Player("smt", 10, 5, 3, 2, gc, gm);
+        Player p3 = new Player("getOut", 30, 20, 5, 5, gc, gm);
+
+        players.add(p1);
+        players.add(p2);
+        players.add(p3);
 
 
     }
 
+    public void addPlayer(Player player) {
+        players.add(player);
+    }
+
+    public Array_List getPlayers() {
+        return players;
+    }
+/*
     public void addPlayer(Player player){
         try{
             FileOutputStream fileOut = new FileOutputStream("tuctactoe.ser");
@@ -58,5 +80,7 @@ public class PlayersCatalogue {
 
         return playerArray;
     }
+
+ */
 
 }

@@ -13,18 +13,33 @@ public class Player {
     private double score;
     private boolean placedMark;
 
-    GameController gc = new GameController();
-    GameModel gm = new GameModel(gc);
+    GameController gc;
+    GameModel gm;
 
 
-    public Player() {
+    public Player(String nickname, GameController gc) {
         this.wins = 0;
         this.defeats = 0;
         this.ties = 0;
         this.score = 0;
         this.nickname = nickname;
         this.gc = gc;
+        this.gm = gc.getModel();
+    }
+
+    public Player(String nickname, int games, int wins, int defeats, int ties, GameController gc, GameModel gm) {
+        this.nickname = nickname;
+        this.games = games;
+        this.wins = wins;
+        this.defeats = defeats;
+        this.ties = ties;
+        this.score = getScore();
+        this.gc = gc;
         this.gm = gm;
+    }
+
+    public Player() {
+
     }
 
     public double ScoreCalculator(){

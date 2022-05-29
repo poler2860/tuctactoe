@@ -24,10 +24,41 @@ public class Array_List {
         this.NumOfElementsInArray = 0;
     }
 
-    //Adds an object to the array
-    public void add(Object obj) {
+    public void add(Object x) {
+        if (CheckIfFull()) {
+            CopyArray(0);
+        }
 
+        this.Array_List[this.NumOfElementsInArray] = x;
+        this.NumOfElementsInArray++;
     }
+    //Adds an object to the array
+    public void add(int index, Object obj) {
+        if (CheckIfFull()) {
+            CopyArray(1);
+        }
+
+        if (index >= this.Array_List.length) {
+            System.out.println("The index is out of bounds");
+            System.exit(-1);
+        }
+
+        Object temp = this.Array_List[index];
+        Array_List[index] = obj;
+
+        Object temp2;
+
+        // Invariant: index <= i < arrayList.length - 1
+        for (int i = index; i < this.Array_List.length - 1; i++) {
+            temp2 = Array_List[i + 1];
+            Array_List[i + 1] = temp;
+            temp = temp2;
+        }
+
+        CopyArray(0);
+        this.NumOfElementsInArray++;
+    }
+
 
     //Removes an object from the array
     public void remove(Object obj) {
@@ -52,6 +83,21 @@ public class Array_List {
 
         return -1;
     }
+
+    public Object get(int index) {
+        Object element = null;
+
+        // Invariant: 0 <= index < Array_List.length
+        try {
+            element = this.Array_List[index];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("The index that you specified is not within bounds.");
+            System.exit(-1);
+        }
+
+        return element;
+    }
+
 
     public int size(){
         return this.NumOfElementsInArray;
@@ -89,5 +135,8 @@ public class Array_List {
         return size;
     }
 
+    public Object[] getArray_List() {
+        return Array_List;
+    }
 
 }

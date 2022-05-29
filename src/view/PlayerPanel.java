@@ -18,6 +18,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import arraylist.Array_List;
 import control.GameController;
 import model.players.Player;
 
@@ -71,16 +72,15 @@ public class PlayerPanel extends GamePanel{
 	}
 
 	public void changePlayer() {
-		Player[] allPlayers = gc.getModel().getPlayerCatalogue().getPlayers();
-		Arrays.sort(allPlayers);
+		Array_List allPlayers = gc.getModel().getPlayerCatalogue().getPlayers();
 
 		Player selPlayer = (Player) JOptionPane.showInputDialog(this,
 				"Choose a Player...",
 				"Player selection",
 				JOptionPane.PLAIN_MESSAGE,
 				null,
-				allPlayers,
-				currentPlayer.getNickname()
+				allPlayers.getArray_List(),
+				currentPlayer
 				);
 		
 		if(selPlayer != null) {
@@ -97,7 +97,11 @@ public class PlayerPanel extends GamePanel{
 			this.setPlayerStats(gc.getModel().getPlayerStats(currentPlayer));
 			this.repaint();
 		}
-	}	
+	}
+
+	public void newPlayer() {
+
+	}
 
 	public int getPos() {
 		return pos;

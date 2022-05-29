@@ -19,7 +19,7 @@ public class GameModel {
 		this.gc=gc;
 		gamePlayers = new Player[2];
 		gameBoard= null;
-		playerCatalogue= new PlayersCatalogue();
+		playerCatalogue= new PlayersCatalogue(gc.getModel(), gc);
 		mover=false;
 		moves = 0;
 	}
@@ -66,10 +66,7 @@ public class GameModel {
 	}
 
 	public boolean endGame() {
-		if (getResult() == 1 || getResult() == -1) {
-			return true;
-		}
-		return false;
+		return getResult() == 1 || getResult() == -1;
 	}
 
 	public int makeMove(int row, int col) {
