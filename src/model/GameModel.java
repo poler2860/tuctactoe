@@ -1,5 +1,7 @@
 package model;
 
+import java.time.LocalDateTime;
+
 import control.GameController;
 
 
@@ -58,7 +60,34 @@ public class GameModel {
 	public void startGame() {
 		gameBoard= new String[3][3]; //rows | columns
 	}
-	
+
+	public boolean endGame() {
+		if(getResult() == 1 || getResult() == 0) {
+			return true;
+		}
+
+	public int makeMove(int row, int col) {
+		if(endGame() == false) {
+			if(inPlay()) {
+				checkMoveValidity(row, col);
+				gameBoard[row][col]=getMoverMark();
+				int check = getResult();
+			if(getResult() == 0 || getResult() == 1) {
+					gameEnded = true;
+					gc.endGame(gamePlayers[check],gamePlayers[check == 0 ? check+1 : check-1], 1);
+				}else if(check == -1) {
+					gc.endGame(null, null, 0);
+				}
+				mover=!mover;
+				moves++;
+				return 0;
+				}
+			}
+			System.out.println("Game ended.No move is legal!");
+			return 1;
+		}
+
+	}
 	public boolean inPlay() {
 		return gameBoard !=null;
 	}
@@ -95,13 +124,44 @@ public class GameModel {
 		sb.append("Lost:").append("\t").append("25%").append("\n");
 		return sb.toString();			
 	}
+	public void handleGameEnding(Player winner, Player loser, int gameType) {
+		LocalDateTime timeStamp = LocalDateTime.now();
+		if(gameType == 1) {
+			winner.won();
+			loser.lost();
 
-	public String getResult(){
+			Game game = new Game(winner, loser, 1, timeStamp);
+
+			winner.addGame(game);
+			loser.addGame(game);
+			winner.scoreCalc();
+			loser.scoreCalc();
+
+			this.gamesCatalogue.addGame(game);
+
+
+		}else if(gameType == 0){
+			winner.tie();
+			loser.tie();
+
+			Game game = new Game(winner, loser, 0, timeStamp);
+
+			winner.addGame(game);
+			loser.addGame(game);
+			winner.scoreCalc();
+			loser.scoreCalc();
+
+			this.gamesCatalogue.addGame(game);
+		}
+
+	}
+
+	public int getResult(){
 		if(horizontalCheck() == "X" || verticalCheck() == "X" || DiagonalCheck() == "X"){
-			return gamePlayers[0];
+			return 0;
 		}
 		if(horizontalCheck() == "O" || verticalCheck() == "O" || DiagonalCheck() == "O"){
-			return gamePlayers[1];
+			return 1;
 		}
 
 		return null;
