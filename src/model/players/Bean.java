@@ -4,7 +4,7 @@ import model.GameModel;
 
 import java.util.Random;
 
-public class Bean extends player {
+public class Bean extends Player {
 GameModel gm;
 
 Random rand = new Random();

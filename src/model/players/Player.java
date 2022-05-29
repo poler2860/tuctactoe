@@ -17,19 +17,24 @@ public class Player {
     GameModel gm = new GameModel(gc);
 
 
-    public Player(String nickname) {
-        this.wins=0;
-        this.defeats=0;
-        this.ties=0;
-        this.score=0;
+    public Player() {
+        this.wins = 0;
+        this.defeats = 0;
+        this.ties = 0;
+        this.score = 0;
         this.nickname = nickname;
-
+        this.gc = gc;
+        this.gm = gm;
     }
 
-    public void ScoreCalculator(){
+    public double ScoreCalculator(){
         if(games>0){
             score = ( (2 * wins +ties ) / games ) * 50;
+        } else {
+            score = 0;
         }
+
+        return score;
     }
 
     public void win(){
@@ -40,6 +45,11 @@ public class Player {
     public void defeat(){
         games++;
         defeats++;
+    }
+
+    public void tie() {
+        games++;
+        ties++;
     }
 
     public String getNickname() {

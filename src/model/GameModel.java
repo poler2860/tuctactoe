@@ -3,19 +3,20 @@ package model;
 import java.time.LocalDateTime;
 
 import control.GameController;
+import model.players.Player;
 
 
 public class GameModel {
 	PlayersCatalogue  playerCatalogue;
-	String [] gamePlayers;		
+	Player[] gamePlayers;
 	String[][] gameBoard;
 	GameController gc;
 	Boolean mover;
-	int moves;
+	public int moves;
 	
 	public GameModel(GameController gc) {
 		this.gc=gc;
-		gamePlayers = new String[2];
+		Player[] gamePlayers = new Player()[2];
 		gameBoard= null;
 		playerCatalogue= new PlayersCatalogue();
 		mover=false;
@@ -64,7 +65,7 @@ public class GameModel {
 	}
 
 	public boolean endGame() {
-		if(getResult() == 1 || getResult() == 0) {
+		if(getResult() == 1 || getResult() == -1) {
 			return true;
 		}
 
@@ -98,7 +99,7 @@ public class GameModel {
 		return !inPlay();
 	}
 	
-	public String[] getGamePlayers() {
+	public Player[] getGamePlayers() {
 		return gamePlayers;
 	}
 
@@ -150,7 +151,7 @@ public class GameModel {
 
 			winner.addGame(game);
 			loser.addGame(game);
-			winner.scoreCalc();
+			winner.();
 			loser.scoreCalc();
 
 			this.gamesCatalogue.addGame(game);
@@ -160,13 +161,13 @@ public class GameModel {
 
 	public int getResult(){
 		if(horizontalCheck() == "X" || verticalCheck() == "X" || DiagonalCheck() == "X"){
-			return 0;
+			return -1;
 		}
 		if(horizontalCheck() == "O" || verticalCheck() == "O" || DiagonalCheck() == "O"){
 			return 1;
 		}
 
-		return null;
+		return 0;
 	}
 
 	public String horizontalCheck(){
