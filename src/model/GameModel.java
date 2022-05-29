@@ -11,12 +11,13 @@ public class GameModel {
 	Player[] gamePlayers;
 	String[][] gameBoard;
 	GameController gc;
-	Boolean mover;
+	boolean mover;
+	boolean gameEnded;
 	public int moves;
 	
 	public GameModel(GameController gc) {
 		this.gc=gc;
-		gamePlayers = new Player()[2];
+		gamePlayers = new Player[2];
 		gameBoard= null;
 		//playerCatalogue= new PlayersCatalogue();
 		mover=false;
@@ -41,12 +42,12 @@ public class GameModel {
 		return gameBoard[row][col];
 	}
 	
-	public void makeMove(int row, int col) {
+	/*public void makeMove(int row, int col) {
 		checkMoveValidity(row, col);
 		gameBoard[row][col]=getMoverMark();
 		mover=!mover;		
 	}
-	
+	*/
 	public String getMoverMark() {
 		return mover? "X": "O";
 	}
@@ -65,9 +66,11 @@ public class GameModel {
 	}
 
 	public boolean endGame() {
-		if(getResult() == 1 || getResult() == -1) {
+		if (getResult() == 1 || getResult() == -1) {
 			return true;
 		}
+		return false;
+	}
 
 	public int makeMove(int row, int col) {
 		if(endGame() == false) {
@@ -90,7 +93,6 @@ public class GameModel {
 			return 1;
 		}
 
-	}
 	public boolean inPlay() {
 		return gameBoard !=null;
 	}
@@ -133,32 +135,17 @@ public class GameModel {
 	public void handleGameEnding(Player winner, Player loser, int gameType) {
 		LocalDateTime timeStamp = LocalDateTime.now();
 		if(gameType == 1) {
-			winner.won();
-			loser.lost();
+			winner.win();
+			loser.defeat();
 
-			Game game = new Game(winner, loser, 1, timeStamp);
-
-			winner.addGame(game);
-			loser.addGame(game);
-			winner.scoreCalc();
-			loser.scoreCalc();
-
-			this.gamesCatalogue.addGame(game);
 
 
 		}else if(gameType == 0){
 			winner.tie();
 			loser.tie();
 
-			Game game = new Game(winner, loser, 0, timeStamp);
 
-			winner.addGame(game);
-			loser.addGame(game);
-			winner.();
-			loser.scoreCalc();
-
-			this.gamesCatalogue.addGame(game);
-		}
+			}
 
 	}
 

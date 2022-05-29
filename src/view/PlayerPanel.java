@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import control.GameController;
+import model.players.Player;
 
 public class PlayerPanel extends GamePanel{
 	
@@ -70,10 +71,10 @@ public class PlayerPanel extends GamePanel{
 	}
 
 	public void changePlayer() {
-		String[] allPlayers = gc.getModel().getPlayerCatalogue().getPlayers();
+		Player[] allPlayers = gc.getModel().getPlayerCatalogue().getPlayers();
 		Arrays.sort(allPlayers);
 
-		String selPlayer = (String) JOptionPane.showInputDialog(this, 
+		Player selPlayer = (String) JOptionPane.showInputDialog(this,
 				"Choose a Player...",
 				"Player selection",
 				JOptionPane.PLAIN_MESSAGE,

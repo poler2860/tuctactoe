@@ -7,6 +7,10 @@ import java.util.Random;
 public class Bean extends Player {
 GameModel gm;
 
+public Bean() {
+
+}
+
 Random rand = new Random();
     public void BeanPlacement() {
         Boolean placedMark = true;
