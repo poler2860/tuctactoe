@@ -21,7 +21,7 @@ public class BoardCell extends GamePanel implements MouseListener {
 
 	public BoardCell(GameController gc, int row, int col) {
 		super(gc);
-		this.setBackground(Color.black);
+		this.setBackground(Color.white);
 		this.row = row;
 		this.col = col;
 		this.addMouseListener(this);
@@ -58,11 +58,12 @@ public class BoardCell extends GamePanel implements MouseListener {
 			}
 			return;
 		} else if (mark.equals("X")) {
-			//g2d.drawLine(CELL_PADDING, CELL_PADDING, CELL_PADDING + size, CELL_PADDING + size);
-			//g2d.drawLine(CELL_PADDING + size, CELL_PADDING, CELL_PADDING, CELL_PADDING + size);
+			g2d.drawLine(CELL_PADDING, CELL_PADDING, CELL_PADDING + size, CELL_PADDING + size);
+			g2d.drawLine(CELL_PADDING + size, CELL_PADDING, CELL_PADDING, CELL_PADDING + size);
 
 		} else {
-			//g2d.drawOval(CELL_PADDING, CELL_PADDING, size, size);
+			g2d.drawOval(CELL_PADDING, CELL_PADDING, size, size);
+
 		}
 	}
 	
