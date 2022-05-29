@@ -71,7 +71,7 @@ public class GameController extends WindowAdapter {
 
 	public void stopGame(){
 		if(model.endGame()) {
-			this.view.getMainPanel().remove(MainAreaPanel.BOARD);
+			this.view.getMainPanel().remove();
 			this.view.getMainPanel().showCard(MainAreaPanel.HOF);
 			this.view.getTopPanel().getStartBtn().setEnabled(true);
 		}
