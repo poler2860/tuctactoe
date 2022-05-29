@@ -7,7 +7,7 @@ import model.players.Player;
 
 
 public class GameModel {
-	PlayersCatalogue  playerCatalogue;
+	//PlayersCatalogue  playerCatalogue;
 	Player[] gamePlayers;
 	String[][] gameBoard;
 	GameController gc;
@@ -16,9 +16,9 @@ public class GameModel {
 	
 	public GameModel(GameController gc) {
 		this.gc=gc;
-		Player[] gamePlayers = new Player()[2];
+		gamePlayers = new Player()[2];
 		gameBoard= null;
-		playerCatalogue= new PlayersCatalogue();
+		//playerCatalogue= new PlayersCatalogue();
 		mover=false;
 		moves = 0;
 	}
@@ -51,7 +51,7 @@ public class GameModel {
 		return mover? "X": "O";
 	}
 	
-	public void selectPlayer(String player, int pos) {
+	public void selectPlayer(Player player, int pos) {
 		if (pos<0 && pos>1)return;
 		gamePlayers[pos]=player;		
 	}
@@ -111,14 +111,17 @@ public class GameModel {
 		this.gameBoard = gameBoard;
 	}
 
+	/*
 	public PlayersCatalogue getPlayerCatalogue() {
 		return playerCatalogue;
 	}
 
+
 	public void setPlayerCatalogue(PlayersCatalogue playerCatalogue) {
+
 		this.playerCatalogue = playerCatalogue;
 	}
-	
+	*/
 	public String getPlayerStats(String player) {
 		StringBuilder sb = new StringBuilder("");
 		sb.append(player).append("\n\n\n");
