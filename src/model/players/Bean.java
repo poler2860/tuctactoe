@@ -1,21 +1,29 @@
 package model.players;
 
-import model.GameModel;
+import control.GameController;
 
-import java.util.Random;
+//import java.util.Random;
+
 
 public class Bean extends Player {
 
-    public Bean() {
+
+    String name;
+
+    GameController gc;
+
+    public Bean(GameController gc) {
         super();
+        this.name = "Mr. Bean";
+        this.gc = gc;
+
     }
-    GameModel gm;
     int tmpmoves;
-    Random rand = new Random();
+    //Random rand = new Random();
     public void BeanPlacement() {
         int row = 0;
         int col = 0;
-        while(gm.inPlay() && tmpmoves<=gm.moves) {
+        while(gc.getModel().inPlay() && tmpmoves<=gc.getModel().moves) {
 
             row = getRandomNumber(0,2);
             col = getRandomNumber(0,2);

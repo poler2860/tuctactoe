@@ -32,7 +32,7 @@ public class TopPanel extends GamePanel{
 		doneBtn = new JButton("Done");		
 		doneBtn.setPreferredSize(new Dimension(100, 40));		
 		doneBtn.setEnabled(false);
-		doneBtn.addActionListener((e)->{System.out.println("done pressed");});
+		doneBtn.addActionListener((e)->{ gc.stopGame();});
 		
 		add(startGameBtn);
 		add(doneBtn);

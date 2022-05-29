@@ -3,6 +3,7 @@ package control;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import com.sun.tools.javac.Main;
 import model.GameModel;
 import model.players.Player;
 import view.MainAreaPanel;
@@ -49,12 +50,30 @@ public class GameController extends WindowAdapter {
 		this.view.getRightPanel().getSelectPlayerBtn().setEnabled(model.NoPlay());
 	}
 
+	/*public void restart()
+	{
+		if(model.endGame())
+		{
+			startGame();
+			this.view.getTopPanel().getRestartBtn().setEnabled(false);
+		}
 
+	}
+*/
 	public void endGame(Player winner, Player loser, int gameType) {
 		if(gameType == 1) {
 			model.handleGameEnding(winner, loser, gameType);
 		}else if(gameType == 0) {
 			model.handleGameEnding(winner, loser, gameType);
+		}
+		this.view.getTopPanel().getDoneBtn().setEnabled(true);
+	}
+
+	public void stopGame(){
+		if(model.endGame()) {
+			this.view.getMainPanel().remove(MainAreaPanel.BOARD);
+			this.view.getMainPanel().showCard(MainAreaPanel.HOF);
+			this.view.getTopPanel().getStartBtn().setEnabled(true);
 		}
 	}
 	public GameModel getModel() {
