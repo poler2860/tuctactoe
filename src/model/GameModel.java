@@ -11,6 +11,7 @@ public class GameModel {
 	String[][] gameBoard;
 	GameController gc;
 	Boolean mover;
+	int moves;
 	
 	public GameModel(GameController gc) {
 		this.gc=gc;
@@ -18,6 +19,7 @@ public class GameModel {
 		gameBoard= null;
 		playerCatalogue= new PlayersCatalogue();
 		mover=false;
+		moves = 0;
 	}
 	
 	public void checkDimValidity(int row, int col) {
