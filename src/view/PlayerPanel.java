@@ -25,7 +25,7 @@ public class PlayerPanel extends GamePanel{
 	
 	JButton selectPlayerBtn;
 	int pos;
-	String currentPlayer;
+	Player currentPlayer;
 	JTextField plName;
 	JLabel plMark;
 	JTextArea plStats;
@@ -74,13 +74,13 @@ public class PlayerPanel extends GamePanel{
 		Player[] allPlayers = gc.getModel().getPlayerCatalogue().getPlayers();
 		Arrays.sort(allPlayers);
 
-		Player selPlayer = (String) JOptionPane.showInputDialog(this,
+		String selPlayer = (String) JOptionPane.showInputDialog(this,
 				"Choose a Player...",
 				"Player selection",
 				JOptionPane.PLAIN_MESSAGE,
 				null,
 				allPlayers,
-				currentPlayer
+				currentPlayer.getNickname()
 				);
 		
 		if(selPlayer != null) {
@@ -93,7 +93,7 @@ public class PlayerPanel extends GamePanel{
 			}			
 			this.currentPlayer=selPlayer;			
 			gc.selectPlayer(selPlayer,pos);
-			this.plName.setText(currentPlayer);
+			this.plName.setText(currentPlayer.getNickname());
 			this.setPlayerStats(gc.getModel().getPlayerStats(currentPlayer));
 			this.repaint();
 		}
