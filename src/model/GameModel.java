@@ -7,7 +7,7 @@ import model.players.*;
 
 
 public class GameModel {
-	//PlayersCatalogue  playerCatalogue;
+	PlayersCatalogue  playerCatalogue;
 	Player[] gamePlayers;
 	String[][] gameBoard;
 	GameController gc;
@@ -19,7 +19,7 @@ public class GameModel {
 		this.gc=gc;
 		gamePlayers = new Player[2];
 		gameBoard= null;
-		//playerCatalogue= new PlayersCatalogue();
+		playerCatalogue= new PlayersCatalogue();
 		mover=false;
 		moves = 0;
 	}
@@ -124,13 +124,14 @@ public class GameModel {
 		this.playerCatalogue = playerCatalogue;
 	}
 	*/
-	public String getPlayerStats(String player) {
+	public String getPlayerStats(Player player) {
 		StringBuilder sb = new StringBuilder("");
-		sb.append(player).append("\n\n\n");
-		sb.append("Total:").append("\t").append(4).append("\n");
-		sb.append("Won:").append("\t").append("75%").append("\n");
-		sb.append("Lost:").append("\t").append("25%").append("\n");
-		return sb.toString();			
+		sb.append(player.getNickname()).append("\n\n\n");
+		sb.append("Total:").append("\t").append(player.getGames()).append("\n");
+		sb.append("Won:").append("\t").append(player.getWins()).append("\n");
+		sb.append("Lost:").append("\t").append(player.getDefeats()).append("\n");
+		sb.append("Ties:").append("\t").append(player.getTies()).append("\n");
+		return sb.toString();
 	}
 	public void handleGameEnding(Player winner, Player loser, int gameType) {
 		LocalDateTime timeStamp = LocalDateTime.now();
@@ -253,5 +254,13 @@ public class GameModel {
 		}
 
 		return result;
+	}
+
+	public PlayersCatalogue getPlayerCatalogue() {
+		return playerCatalogue;
+	}
+
+	public void setPlayerCatalogue(PlayersCatalogue playerCatalogue) {
+		this.playerCatalogue = playerCatalogue;
 	}
 }

@@ -74,7 +74,7 @@ public class PlayerPanel extends GamePanel{
 		Player[] allPlayers = gc.getModel().getPlayerCatalogue().getPlayers();
 		Arrays.sort(allPlayers);
 
-		String selPlayer = (String) JOptionPane.showInputDialog(this,
+		Player selPlayer = (Player) JOptionPane.showInputDialog(this,
 				"Choose a Player...",
 				"Player selection",
 				JOptionPane.PLAIN_MESSAGE,
