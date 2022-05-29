@@ -49,6 +49,14 @@ public class GameModel {
 		mover=!mover;		
 	}
 	*/
+	public void restart()
+	{
+		if(endGame() == true)
+		{
+			startGame();
+		}
+
+	}
 	public String getMoverMark() {
 		return mover? "X": "O";
 	}
