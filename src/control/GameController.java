@@ -80,7 +80,7 @@ public class GameController extends WindowAdapter {
 	}
 
 	public void botMove() {
-
+		if()
 	}
 	public GameModel getModel() {
 		return model;
