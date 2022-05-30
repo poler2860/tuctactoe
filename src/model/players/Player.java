@@ -13,23 +13,43 @@ public class Player {
     private double score;
     private boolean placedMark;
 
-    GameController gc = new GameController();
-    GameModel gm = new GameModel(gc);
+    GameController gc;
+    GameModel gm;
 
 
-    public Player(String nickname) {
-        this.wins=0;
-        this.defeats=0;
-        this.ties=0;
-        this.score=0;
+    public Player(String nickname, GameController gc) {
+        this.wins = 0;
+        this.defeats = 0;
+        this.ties = 0;
+        this.score = 0;
         this.nickname = nickname;
+        this.gc = gc;
+        this.gm = gc.getModel();
+    }
+
+    public Player(String nickname, int games, int wins, int defeats, int ties, GameController gc, GameModel gm) {
+        this.nickname = nickname;
+        this.games = games;
+        this.wins = wins;
+        this.defeats = defeats;
+        this.ties = ties;
+        this.score = getScore();
+        this.gc = gc;
+        this.gm = gm;
+    }
+
+    public Player() {
 
     }
 
-    public void ScoreCalculator(){
+    public double ScoreCalculator(){
         if(games>0){
             score = ( (2 * wins +ties ) / games ) * 50;
+        } else {
+            score = 0;
         }
+
+        return score;
     }
 
     public void win(){
@@ -40,6 +60,11 @@ public class Player {
     public void defeat(){
         games++;
         defeats++;
+    }
+
+    public void tie() {
+        games++;
+        ties++;
     }
 
     public String getNickname() {
