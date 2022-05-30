@@ -14,7 +14,10 @@ public class GameModel {
 	boolean mover;
 	boolean gameEnded;
 	public int moves;
-	
+
+	Bean bean;
+
+	Hal hal;
 	public GameModel(GameController gc) {
 		this.gc=gc;
 		gamePlayers = new Player[2];
@@ -23,44 +26,44 @@ public class GameModel {
 		mover=false;
 		moves = 0;
 	}
-	
+
 	public void checkDimValidity(int row, int col) {
 		if (row <0 || col < 0 || row > 2 || col >2) {
 			throw new IndexOutOfBoundsException(row + ","+col +" is not a valid board cell");
 		}
 	}
-	
+
 	public void checkMoveValidity(int row, int col) {
 		checkDimValidity(row, col);
 		if (gameBoard[row][col]!=null) {
 			throw new IllegalArgumentException("Non playable cell");
 		}
 	}
-	
+
 	public String getBoardMark(int row, int col) {
 		checkDimValidity(row, col);
 		return gameBoard[row][col];
 	}
-	
+
 	/*public void makeMove(int row, int col) {
 		checkMoveValidity(row, col);
 		gameBoard[row][col]=getMoverMark();
-		mover=!mover;		
+		mover=!mover;
 	}
 	*/
+
 	public String getMoverMark() {
 		return mover? "X": "O";
 	}
-	
 	public void selectPlayer(Player player, int pos) {
 		if (pos<0 && pos>1)return;
-		gamePlayers[pos]=player;		
+		gamePlayers[pos]=player;
 	}
-	
+
 	public boolean ready() {
 		return (gamePlayers[0] != null && gamePlayers[1] !=null);
 	}
-		
+
 	public void startGame() {
 		gameBoard= new String[3][3]; //rows | columns
 	}
@@ -80,7 +83,7 @@ public class GameModel {
 				checkMoveValidity(row, col);
 				gameBoard[row][col]=getMoverMark();
 				int check = getResult();
-			if(getResult() == -1 || getResult() == 1) {
+			if(getResult() == 0 || getResult() == 1) {
 					gameEnded = true;
 					gc.endGame(gamePlayers[check],gamePlayers[check == 0 ? check+1 : check-1], 1);
 				}else if(check == 2) {
@@ -91,14 +94,14 @@ public class GameModel {
 				return 0;
 				}
 			}
-			System.out.println("Game ended.No move is legal!");
+			System.out.println("Game ended. No move is legal!");
 			return 1;
 		}
 
 	public boolean inPlay() {
 		return gameBoard != null;
 	}
-	
+
 	public boolean NoPlay() {
 		return !inPlay();
 	}
@@ -110,7 +113,7 @@ public class GameModel {
 			}
 		}
 	}
-	
+
 	public Player[] getGamePlayers() {
 		return gamePlayers;
 	}
@@ -139,15 +142,19 @@ public class GameModel {
 		sb.append("Ties:").append("\t").append(player.getTies()).append("\n");
 		return sb.toString();
 	}
+
 	public void handleGameEnding(Player winner, Player loser, int gameType) {
 		LocalDateTime timeStamp = LocalDateTime.now();
+		moves = 0;
 		if(gameType == 1) {
+
 			winner.win();
 			loser.defeat();
 
 
 
 		}else if(gameType == 0){
+
 			winner.tie();
 			loser.tie();
 
@@ -155,20 +162,19 @@ public class GameModel {
 			}
 
 	}
-
 	public int getResult(){
 
 		if(moves == 9) {
 			return 2;
 		}
 		if(horizontalCheck() == "X" || verticalCheck() == "X" || DiagonalCheck() == "X"){
-			return -1;
+			return 0;
 		}
 		if(horizontalCheck() == "O" || verticalCheck() == "O" || DiagonalCheck() == "O"){
 			return 1;
 		}
 
-		return 0;
+		return -1;
 	}
 
 	public String horizontalCheck(){
@@ -200,6 +206,7 @@ public class GameModel {
 		return result;
 
 }
+
 	public String verticalCheck(){
 
 		String result = null;
@@ -265,12 +272,19 @@ public class GameModel {
 
 		return result;
 	}
-
 	public PlayersCatalogue getPlayerCatalogue() {
 		return playerCatalogue;
 	}
 
 	public void setPlayerCatalogue(PlayersCatalogue playerCatalogue) {
 		this.playerCatalogue = playerCatalogue;
+	}
+
+	public Bean getBean() {
+		return bean;
+	}
+
+	public Hal getHal() {
+		return hal;
 	}
 }

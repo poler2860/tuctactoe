@@ -80,7 +80,24 @@ public class GameController extends WindowAdapter {
 	}
 
 	public void botMove() {
-		if()
+
+		//Checks if a bot is in the match
+		boolean bean0 = getModel().getGamePlayers()[0].getNickname().equals("Mr. Bean"),
+				bean1 = getModel().getGamePlayers()[1].getNickname().equals("Mr. Bean"),
+				hal0 = getModel().getGamePlayers()[0].getNickname().equals("Hal 9000"),
+				hal1 = getModel().getGamePlayers()[1].getNickname().equals("Hal 9000");
+
+		if(bean1 || bean0){
+
+			getModel().getBean().BeanPlacement();
+
+		}
+
+		if(hal0 || hal1) {
+
+			getModel().getHal().HalPlacement();
+
+		}
 	}
 	public GameModel getModel() {
 		return model;

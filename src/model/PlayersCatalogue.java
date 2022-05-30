@@ -2,7 +2,7 @@ package model;
 
 import model.players.Player;
 import model.players.Bean;
-//import model.players.Hal;
+import model.players.Hal;
 import arraylist.Array_List;
 import control.GameController;
 
@@ -23,12 +23,12 @@ public class PlayersCatalogue {
         Player p1 = new Player("Namios", 20, 10, 5, 5, gc, gm);
         Player p2 = new Player("smt", 10, 5, 3, 2, gc, gm);
         Bean bean = new Bean("Mr. Bean", 20, 6, 2, 12, gc);
-        //Hal hal9000 = new Hal("Hal 9000", 40, 25, 2, 13, gc);
+        Hal hal9000 = new Hal("Hal 9000", 40, 25, 2, 13, gc);
 
         players.add(p1);
         players.add(p2);
         players.add(bean);
-        //players.add(hal9000);
+        players.add(hal9000);
 
         NumOfPlayers = players.size();
 
