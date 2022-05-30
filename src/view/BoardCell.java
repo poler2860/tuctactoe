@@ -16,10 +16,11 @@ import model.GameModel;
 @SuppressWarnings("serial")
 public class BoardCell extends GamePanel implements MouseListener {
 	public static final int CELL_PADDING = 5;
-	int row, col;	
+	int row, col;
+	int width, height;
 	public boolean highlighted;
 
-	public BoardCell(GameController gc, int row, int col) {
+	public BoardCell(GameController gc, int row, int col, int width, int height) {
 		super(gc);
 		this.setBackground(Color.white);
 		this.row = row;
@@ -27,13 +28,17 @@ public class BoardCell extends GamePanel implements MouseListener {
 		this.addMouseListener(this);
 		this.highlighted = false;
 		this.setLayout(null);
+		this.width = width;
+		this.height = height;
 	}
 	
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		System.out.println("Mouse entered cell " + this);
-		this.highlighted = true;
-		repaint();
+		if(!gc.getModel().endGame()) {
+			this.highlighted = true;
+			repaint();
+		}
 	}
 
 	@Override

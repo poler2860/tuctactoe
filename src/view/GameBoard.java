@@ -18,10 +18,11 @@ public class GameBoard extends GamePanel {
 		this.setLayout(null);
 		setSize(new Dimension(MainWindow.WIDTH-2*MainWindow.PLAYER_WIDTH, MainWindow.HEIGHT-MainWindow.TOP_HEIGHT));		
 		this.setBackground(Color.WHITE);
-		this.cells= new BoardCell[3][3];				
+		this.cells= new BoardCell[3][3];
+		int bCellSize = (this.getWidth() / 3) - (2 * BoardCell.CELL_PADDING);
 		for (int row=0; row< 3; row++) {
 			for (int col=0; col< 3; col++) {
-				BoardCell cell = new BoardCell(gc, row, col);
+				BoardCell cell = new BoardCell(gc, row, col, bCellSize, bCellSize);
 				cell.setBounds(
 						boardZero().x+col*cellSize()+BoardCell.CELL_PADDING,
 						boardZero().y+row*cellSize()+BoardCell.CELL_PADDING,

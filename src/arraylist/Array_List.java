@@ -59,6 +59,17 @@ public class Array_List {
         this.NumOfElementsInArray++;
     }
 
+    public int find (Object obj) {
+        for (int i = 0; i < this.Array_List.length; i++) {
+            if (obj.equals(this.Array_List[i])) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+
 
     //Removes an object from the array
     public void remove(Object obj) {
@@ -71,17 +82,6 @@ public class Array_List {
             }
         }
 
-    }
-
-    public int find(Object obj) {
-
-        for (int i = 0; i < this.Array_List.length; i++) {
-            if(obj.equals(this.Array_List[i])) {
-                return 1;
-            }
-        }
-
-        return -1;
     }
 
     public Object get(int index) {

@@ -1,6 +1,8 @@
 package model;
 
 import model.players.Player;
+import model.players.Bean;
+//import model.players.Hal;
 import arraylist.Array_List;
 import control.GameController;
 
@@ -13,27 +15,72 @@ public class PlayersCatalogue {
     Array_List players;
 
 
-    public PlayersCatalogue(GameModel gm, GameController gc){
+    public PlayersCatalogue(GameController gc){
 
+        GameModel gm = gc.getModel();
         players = new Array_List(50);
 
         Player p1 = new Player("Namios", 20, 10, 5, 5, gc, gm);
         Player p2 = new Player("smt", 10, 5, 3, 2, gc, gm);
-        Player p3 = new Player("getOut", 30, 20, 5, 5, gc, gm);
+        Bean bean = new Bean("Mr. Bean", 20, 6, 2, 12, gc);
+        //Hal hal9000 = new Hal("Hal 9000", 40, 25, 2, 13, gc);
 
         players.add(p1);
         players.add(p2);
-        players.add(p3);
+        players.add(bean);
+        //players.add(hal9000);
 
+        NumOfPlayers = players.size();
 
     }
 
     public void addPlayer(Player player) {
         players.add(player);
+        NumOfPlayers++;
     }
 
     public Array_List getPlayers() {
         return players;
+    }
+
+    public Player[] getPlayerArray() {
+        Player[] tmpArray = new Player[NumOfPlayers];
+        for (int i = 0; i < NumOfPlayers; i++) {
+            tmpArray[i] = (Player) players.get(i);
+        }
+        return tmpArray;
+    }
+
+    public String[] getPlayerNames() {
+        String[] tmpArray = new String[NumOfPlayers];
+        Player p;
+        for (int i = 0; i < players.size(); i++) {
+            p = (Player) players.get(i);
+            tmpArray[i] = p.getNickname();
+        }
+        return tmpArray;
+    }
+
+    public Player findByName(String name) {
+
+        Player p;
+
+        for (int i = 0; i < players.size(); i++) {
+
+            p = (Player) players.get(i);
+
+            if( p.getNickname().equals(name) ){
+                System.out.println(p.getNickname());
+                return p;
+            }
+
+        }
+
+        return null;
+    }
+
+    public int getNumOfPlayers(){
+        return NumOfPlayers;
     }
 /*
     public void addPlayer(Player player){

@@ -12,24 +12,24 @@ public class Bean extends Player {
 
     GameController gc;
 
-    public Bean(GameController gc) {
-        super();
+    public Bean(String name, int games, int wins, int defeats, int ties, GameController gc) {
+        super("Mr. Bean", games, wins, defeats, ties, gc, gc.getModel());
         this.name = "Mr. Bean";
         this.gc = gc;
 
     }
-    int tmpmoves;
     //Random rand = new Random();
     public void BeanPlacement() {
+        int tmpMoves = 0;
         int row = 0;
         int col = 0;
-        while(gc.getModel().inPlay() && tmpmoves<=gc.getModel().moves) {
+        while(gc.getModel().inPlay() && tmpMoves<=gc.getModel().moves) {
 
             row = getRandomNumber(0,2);
             col = getRandomNumber(0,2);
             if (gm.getBoardMark(row,col)==null) {
                 gm.makeMove(row, col);
-                tmpmoves++;
+                tmpMoves++;
             }
             continue;
         }

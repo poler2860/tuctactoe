@@ -27,9 +27,11 @@ public class PlayerPanel extends GamePanel{
 	JButton selectPlayerBtn;
 	int pos;
 	Player currentPlayer;
+	String currentPlayerName;
 	JTextField plName;
 	JLabel plMark;
 	JTextArea plStats;
+
 		
 	public PlayerPanel(GameController c, int pos) {
 		super(c);
@@ -72,27 +74,42 @@ public class PlayerPanel extends GamePanel{
 	}
 
 	public void changePlayer() {
+		String[] allPlayerNames = gc.getModel().getPlayerCatalogue().getPlayerNames();
 		Array_List allPlayers = gc.getModel().getPlayerCatalogue().getPlayers();
+		Player selecPlayer;
 
-		Player selPlayer = (Player) JOptionPane.showInputDialog(this,
+		String selPlayer = (String) JOptionPane.showInputDialog(this,
 				"Choose a Player...",
 				"Player selection",
 				JOptionPane.PLAIN_MESSAGE,
 				null,
-				allPlayers.getArray_List(),
-				currentPlayer
+				allPlayerNames,
+				currentPlayerName
 				);
-		
+
+
+
 		if(selPlayer != null) {
-			if (selPlayer.equals(gc.getModel().getGamePlayers()[pos==0?1:0])) {
-				JOptionPane.showMessageDialog(gc.getView(), 						
+			/*
+			if (selPlayer.equals(gc.getModel().getGamePlayers()[pos==0?1:0].getNickname())) {
+				JOptionPane.showMessageDialog(gc.getView(),
 						"Player already selected",
 						"Ooops...",
 						JOptionPane.ERROR_MESSAGE);
 				return;
-			}			
-			this.currentPlayer=selPlayer;			
-			gc.selectPlayer(selPlayer,pos);
+			}
+			*/
+			currentPlayerName = selPlayer;
+			System.out.println("Selected: " + currentPlayerName);
+
+			//System.out.println("h" + gc.getModel().getPlayerCatalogue().findByName(currentPlayerName).getNickname());
+
+			selecPlayer = gc.getModel().getPlayerCatalogue().findByName(currentPlayerName);
+			System.out.println("got " + currentPlayerName + " setted " + selecPlayer.getNickname() + "\n");
+
+
+			this.currentPlayer = selecPlayer;
+			gc.selectPlayer(selecPlayer,pos);
 			this.plName.setText(currentPlayer.getNickname());
 			this.setPlayerStats(gc.getModel().getPlayerStats(currentPlayer));
 			this.repaint();

@@ -19,7 +19,7 @@ public class GameModel {
 		this.gc=gc;
 		gamePlayers = new Player[2];
 		gameBoard= null;
-		playerCatalogue= new PlayersCatalogue(gc.getModel(), gc);
+		playerCatalogue= new PlayersCatalogue(gc);
 		mover=false;
 		moves = 0;
 	}
@@ -66,7 +66,12 @@ public class GameModel {
 	}
 
 	public boolean endGame() {
-		return getResult() == 1 || getResult() == -1;
+
+		if(getResult() == 1 || getResult() == -1 || getResult() == 2) {
+			return true;
+		}
+
+		return false;
 	}
 
 	public int makeMove(int row, int col) {
@@ -75,10 +80,10 @@ public class GameModel {
 				checkMoveValidity(row, col);
 				gameBoard[row][col]=getMoverMark();
 				int check = getResult();
-			if(getResult() == 0 || getResult() == 1) {
+			if(getResult() == -1 || getResult() == 1) {
 					gameEnded = true;
 					gc.endGame(gamePlayers[check],gamePlayers[check == 0 ? check+1 : check-1], 1);
-				}else if(check == -1) {
+				}else if(check == 2) {
 					gc.endGame(null, null, 0);
 				}
 				mover=!mover;
@@ -91,11 +96,19 @@ public class GameModel {
 		}
 
 	public boolean inPlay() {
-		return gameBoard !=null;
+		return gameBoard != null;
 	}
 	
 	public boolean NoPlay() {
 		return !inPlay();
+	}
+
+	public void clearGamePanel() {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				gameBoard[i][j] = null;
+			}
+		}
 	}
 	
 	public Player[] getGamePlayers() {
@@ -110,17 +123,13 @@ public class GameModel {
 		this.gameBoard = gameBoard;
 	}
 
-	/*
-	public PlayersCatalogue getPlayerCatalogue() {
-		return playerCatalogue;
+	public void makeblankMove(int row, int col) {
+		if(endGame() == false) {
+			checkMoveValidity(row, col);
+			gameBoard[row][col] = " ";
+		}
 	}
 
-
-	public void setPlayerCatalogue(PlayersCatalogue playerCatalogue) {
-
-		this.playerCatalogue = playerCatalogue;
-	}
-	*/
 	public String getPlayerStats(Player player) {
 		StringBuilder sb = new StringBuilder("");
 		sb.append(player.getNickname()).append("\n\n\n");
@@ -148,6 +157,10 @@ public class GameModel {
 	}
 
 	public int getResult(){
+
+		if(moves == 9) {
+			return 2;
+		}
 		if(horizontalCheck() == "X" || verticalCheck() == "X" || DiagonalCheck() == "X"){
 			return -1;
 		}

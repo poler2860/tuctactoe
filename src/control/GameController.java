@@ -63,18 +63,24 @@ public class GameController extends WindowAdapter {
 	public void endGame(Player winner, Player loser, int gameType) {
 		if(gameType == 1) {
 			model.handleGameEnding(winner, loser, gameType);
+			this.view.getTopPanel().getDoneBtn().setEnabled(true);
 		}else if(gameType == 0) {
 			model.handleGameEnding(winner, loser, gameType);
+			this.view.getTopPanel().getDoneBtn().setEnabled(true);
 		}
-		this.view.getTopPanel().getDoneBtn().setEnabled(true);
 	}
 
 	public void stopGame(){
 		if(model.endGame()) {
-			this.view.getMainPanel().remove();
+			model.clearGamePanel();
+			this.view.getMainPanel().repaint();
 			this.view.getMainPanel().showCard(MainAreaPanel.HOF);
 			this.view.getTopPanel().getStartBtn().setEnabled(true);
 		}
+	}
+
+	public void botMove() {
+
 	}
 	public GameModel getModel() {
 		return model;
